@@ -1,5 +1,5 @@
-#theme: minima
+theme: minima
 title: Poonam's Blog
 description: Troubleshooting the Hotspot JVM
 
-theme: jekyll-theme-slate
+#theme: jekyll-theme-slate
