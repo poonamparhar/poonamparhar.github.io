@@ -1,5 +1,31 @@
-theme: minima
-title: Poonam's blog
-description: Troubleshooting the Hotspot JVM
+title: "Poonam's Blog"
+author: "Poonam Parhar"
+description: "Troubleshooting the Hotspot JVM"
 
-#theme: jekyll-theme-slate
+# Email / Social media user names used by the minima theme:
+
+#twitter_username: "poonambajaj"
+github_username: "poonamparhar"
+linkedin_username: "poonamparhar"
+rss: rss
+
+theme: "minima"
+
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
+    
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+titles_from_headings:
+  strip_title: true
+  collections: true
+
+defaults:
+  - scope:
+      path: ""
+      type: post
+    values:
+      tags: Other
