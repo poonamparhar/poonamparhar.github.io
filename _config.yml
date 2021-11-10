@@ -1,31 +1,33 @@
-title: "Poonam's Blog"
-author: "Poonam Parhar"
-description: "Troubleshooting the Hotspot JVM"
+title: Poonam Parhar
+description: "A blog about troubleshooting the HotSpot JVM"
+permalink: ':title/'
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+site-twitter: #if your site has a twitter account, enter it here
 
-# Email / Social media user names used by the minima theme:
+# Author Settings
+author: Poonam Parhar
+author-img: poonam.jpg # add your photo
+about-author: I am a JVM Sustaining Engineer at Oracle. This is the blogging space to share my troubleshooting experiences with the Hotspot JVM. Views expressed here are solely my own.
+social-twitter: poonam_bajaj # add your Twitter handle
+social-github: poonamparhar  # add your Github handle
+social-linkedin: poonamparhar # add your Linkedin handle
+social-email: poonambparhar@gmail.com # add your Email address
 
-#twitter_username: "poonambajaj"
-github_username: "poonamparhar"
-linkedin_username: "poonamparhar"
-rss: rss
+# Disqus
+discus-identifier: #poonam_parhar
 
-theme: "minima"
+# Tracker
+analytics: # Google Analytics
 
-kramdown:
-  syntax_highlighter_opts:
-    disable: true
-    
+# Build Settings
+markdown: kramdown
 plugins:
-  - jekyll-feed
   - jekyll-sitemap
+  - jekyll-paginate
+  - jemoji
 
-titles_from_headings:
-  strip_title: true
-  collections: true
+paginate: 8
+paginate_path: "/page/:num"
 
-defaults:
-  - scope:
-      path: ""
-      type: post
-    values:
-      tags: Other
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
