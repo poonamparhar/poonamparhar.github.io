@@ -86,7 +86,7 @@ The above Metaspace log entries show that after the GC invocation #16, the reser
 
 ## Compressed class space
 
-We can also have a separate space as part of the Metaspace to store only the *class-part* of metadata. This separate space is called **Compressed class space**, and the *class-part* metadata in it is referenced using 32-bit offsets from Java objects. The Compressed class space is explained very beautifuly in Thomas Stuefe's blog post here: https://stuefe.de/posts/metaspace/what-is-compressed-class-space/
+We can also have a separate space as part of the Metaspace to store only the *class-part* of metadata. This separate space is called **Compressed class space**, and the *class-part* metadata in it is referenced using 32-bit offsets from Java objects. The Compressed class space is explained very beautifuly in Thomas Stuefe's blog post here: [https://stuefe.de/posts/metaspace/what-is-compressed-class-space/](https://stuefe.de/posts/metaspace/what-is-compressed-class-space/)
 
 In the previous section, for simplicity of logs, I had disabled the use of a separate **Compressed class space** using the option **-XX:-UseCompressedClassPointers**. On 64-bit platforms, the Compressed class space is enabled by default with a default reserved space size of 1 Gigabytes (GB). The reserved space for the Compressed class space is set up at JVM initialization time, and its size can not be changed later. The maximum reserved space size that the Hotspot JVM allows for the Compressed class space is 3GB, and it can be configured using the JVM option **-XX:CompressedClassSpaceSize=n**.
 
@@ -154,7 +154,7 @@ Heap
 }
 ```
 
-The enhancement https://bugs.openjdk.java.net/browse/JDK-8198423 takes care of the fragmentation problem in Metaspace. It is integrated into Java 11. Since the Metaspace barring the separate class space is unlimited, in order to circumvent OutOfMemoryError failures due to fragmentation while running with Java 8, it might be helpful to run without the Compressed class space. Note that this configuration will result in increasing the Java heap space requirements, as without the Compressed class space Java objects reference class metadata using 64-bit klass pointers instead of 32-bit offsets.
+The enhancement [JDK-8198423](https://bugs.openjdk.java.net/browse/JDK-8198423) takes care of the fragmentation problem in Metaspace. It is integrated into Java 11. Since the Metaspace barring the separate class space is unlimited, in order to circumvent OutOfMemoryError failures due to fragmentation while running with Java 8, it might be helpful to run without the Compressed class space. Note that this configuration will result in increasing the Java heap space requirements, as without the Compressed class space Java objects reference class metadata using 64-bit klass pointers instead of 32-bit offsets.
 
 Hope this helps! More later.
 
