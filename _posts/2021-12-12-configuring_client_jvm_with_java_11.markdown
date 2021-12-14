@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Configuration for Client Applications with Oracle JDK 9+"
+title: "Configuration for Client Applications with Oracle JDK 11+"
 date: 2021-12-12
 description: # Understanding Metaspace and Class Space GC Log Entries
 img:  client_vm_java_11.png 
