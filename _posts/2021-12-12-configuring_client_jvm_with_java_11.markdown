@@ -8,9 +8,7 @@ fig-caption: # Add figcaption (optional)
 tags: [Client VM, Performance, Startup, Memory Footprint]
 ---
 
-Starting with JDK 9, Oracle no longer ships 32-bit JDK builds. JDK 9 also removed the support of *-client* flag, meaning that the Client VM is no longer available on the [Client-class](https://docs.oracle.com/javase/7/docs/technotes/guides/vm/server-class.html) machines. 
-
-But, what if I have a client-side application and want to have fast startup and low memory footprint, as was possible with a 32-bit JDK running in a Client VM mode? Is it possible to achieve that with JDK 9+? Yes, it is. This post attempts to answer these questions.
+Oracle ships JDK 11 and JDK 17 as 64-bit binaries for Windows, macOS, and Linux. However, many Java applications, especially for Windows, were intended to run on 32-bit binaries and to use the Client VM (*-client*). The last JDK that shipped 32-bit binaries and supported the Client VM was JDK 8, so we are often asked: If I have a client-side application and want to have fast startup and low memory footprint, as was possible with a 32-bit JDK running in Client VM mode, can I achieve it with JDK 11 or 17? The answer is yes, as the rest of this post explains.
 
 There is a JVM option **NeverActAsServerClassMachine**, which when enabled instructs the JVM to treat the host machine as a non-Server-class machine. This option helps emulate Client VM behavior using the Server VM. Please refer to [JDK-8166002](https://bugs.openjdk.java.net/browse/JDK-8166002) to understand how the Client VM behavior is emulated. Enabling this flag helps with reducing startup times and CPU usage for client applications.
 
