@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Running on a 64-bit platform and still running out of memory?"
+title: "Running on a 64-bit Platform and Still Running Out of memory?"
 date: 2014-10-10
 description: 
 img:  compressed_oops_native_oom.jpg 
