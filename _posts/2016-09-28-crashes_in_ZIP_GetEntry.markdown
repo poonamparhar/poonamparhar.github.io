@@ -25,9 +25,9 @@ j  java.util.jar.JarFile.getEntry(Ljava/lang/String;)Ljava/util/zip/ZipEntry;+2
 j  java.util.jar.JarFile.getJarEntry(Ljava/lang/String;)Ljava/util/jar/JarEntry;+2
 ```
 
-Most of the times, the crashes in ZIP_GetEntry occur when the jar file being accessed has been modified/overwritten while the JVM instance was running. For performance reasons, the HotSpot JVM memory-maps each Jar file's central directory structure using **mmap**. This is done so as to avoid reading the central directory structure data from the disk every time it needs to read entries from the Jar file. When a Jar file is modified or overwritten on the disk, the JVM's copy of the data it read before becomes inconsistent with the jar file on the disk, and any attempt to read and load entries from the modified jar can result in an application crash.
+Most of the time, the crashes in ZIP_GetEntry occur when the jar file being accessed has been modified/overwritten while the JVM instance was running. For performance reasons, the HotSpot JVM memory-maps each Jar file's central directory structure using **mmap**. This is done so as to avoid reading the central directory structure data from the disk every time it needs to read entries from the Jar file. When a Jar file is modified or overwritten on the disk after being mmapped by the JVM, the JVM’s copy becomes inconsistent with the jar file on the disk, and any attempt to read and load entries from the modified jar can result in an application crash.
 
-Since 1.6.0_23, a property can be used to disable the memory mapping of the central directory structure of Jar files:
+Since 1.6.0_23 the following system property can be used to disable the memory mapping of the central directory structure of Jar files:
 ```
 -Dsun.zip.disableMemoryMapping=true
 ```
