@@ -3,21 +3,20 @@ layout: post
 title: "Troubleshooting Long GC Pauses"
 date: 2013-07-31
 description: # Troubleshooting Long GC Pauses
-img:  #client_vm_java_11.png 
+img:  long_gc_pauses.png 
 fig-caption: # Add figcaption (optional)
 tags: [Troubleshooting, GC, Pauses]
 ---
 
 Low pause times during the application run is the most important goal for many enterprise applications, especially for the transaction-based systems where long latencies can result in the transaction time-outs. For systems running on the Java Virtual Machines, garbage collections can sometimes be the cause of the long pauses.
 
-In this post, I am going to describe different scenarios where we can encounter long GC pauses and how we can diagnose and troubleshoot these GC pauses.
+In this post, I am going to describe different scenarios where we can encounter long GC pauses and how we can diagnose and troubleshoot those GC pauses.
 
 ## Causes
 
-Following are the different situations that can cause long
-GC pauses during the application run.
+Let's take a look at various situations that can cause long GC pauses during the application run.
 
-1. ### Fragmentation in the Java Heap
+### Fragmentation in the Java Heap
 
 Fragmentation in the Java Heap can cause GCs to occur more frequently and also sometimes causing long pauses in the GCs. This is more probable in the case of Concurrent Mark Sweep collector, also known as CMS, where the tenured generation space is not compacted with the concurrent collections.
 
@@ -137,7 +136,7 @@ Total time for which application threads were stopped:
 17.5730653 seconds
 ```
 
-2. ### Other OS activities Happening at the Time of GC
+### Other OS activities happening at the time of GC
 
 Sometimes the OS activities such as the swap space or networking activity happening at the time when GC is taking place can make the GC pauses last much longer. These pauses can be of the order of few seconds to some minutes.
 
@@ -189,9 +188,9 @@ From the above, it is clear that the physical memory available on the system is 
 
 Apart from swapping, we should monitor if there is any i/o or network activity happening during the long GC pauses. These can be monitored using iostat and netstat tools. It is also helpful to see the CPU statistics with the mpstat tool to figure out if enough CPU resources were available during the GC pauses.
 
-3. ### Insufficient Java Heap Size
+### Insufficient Java Heap size
 
-If the application footprint is larger than the maximum heap space that we have specified for the JVM, it results in frequent collections. Due to the insufficient heap space, the allocation requests fail and the JVM needs to invoke garbage collections in an attempt to reclaim space for the allocations. But since it cannot claim much space with each collection, subsequent allocation failures result in more GC invocations.
+If the application footprint is larger than the maximum Java heap space that we have specified for the JVM, it results in frequent collections. Due to the insufficient heap space, the allocation requests fail and the JVM needs to invoke garbage collections in an attempt to reclaim space for the allocations. But since it cannot claim much space with each collection, subsequent allocation failures result in more GC invocations.
 
 These frequent Full GCs cause long pauses in the application run. For example, in the following case, the permanent generation is almost full and the allocation attempts into the permanent generation are failing, triggering the Full GCs.
 
@@ -210,7 +209,7 @@ Similarly, the frequent Full GCs can occur if there is insufficient space in the
 
 The solution for these long pauses is to identify the average footprint of the application and then specify the heap size accordingly.
 
-4. ### Bug in the JVM
+### Bug in the JVM
 
 Sometimes these long pauses could be due to a bug in the JVM. For example, due to the following bugs in the JVM, Java applications may face long GC pauses.
 
@@ -230,7 +229,7 @@ Sometimes these long pauses could be due to a bug in the JVM. For example, due t
 
 If you are running with a JVM version affected with these bugs, please upgrade to the version where these bugs are fixed.
 
-5. ### Explicit System GCs
+### Explicit System GCs
 
 Check if there are any explicit System GCs happening. Requests to invoke these System GCs which are stop-the-world Full GCs could be coming from the System.gc() calls from some class in the application or from a some third party module. These explicit System GCs too can cause very long pauses.
 
