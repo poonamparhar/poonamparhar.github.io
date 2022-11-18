@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Frequent Full GCs"
-date: 2013-07-31
+date: 2022-11-17
 description: # Frequent Full GCs
 img:  frequent_full_gcs.png 
 fig-caption: # Add figcaption (optional)
