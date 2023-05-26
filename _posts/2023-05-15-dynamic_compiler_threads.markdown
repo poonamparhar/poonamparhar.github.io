@@ -95,7 +95,7 @@ Another workaround is to switch off the diagnostic flag *ReduceNumberOfCompilerT
 
 GLIBC provides some tuning knobs for the memory allocater. In particular, there is **MALLOC_ARENA_MAX** environment variable that controls the maximum number of arenas that can be created. A smaller number of arenas may mean more thread contention, while a larger number may result in an increased memory footprint. The default number for MALLOC_ARENA_MAX is calculated dynamically based on the number of CPUs: (num of CPUs * 8) on a 64-bit system. For a machine with a large number of CPUs, the potential maximum number of arenas can be very high. Setting MALLOC_ARENA_MAX to a lower value (for example, 2) can help in limit fragmentation, and prevent an unwanted increase in RSS.
 
-GLIBC malloc environment variables can also to set using its allocation tunables. More info here: https://www.gnu.org/software/libc/manual/html_node/Memory-Allocation-Tunables.html
+GLIBC malloc environment variables can also to set using its allocation tunables. More info here: [https://www.gnu.org/software/libc/manual/html_node/Memory-Allocation-Tunables.html](https://www.gnu.org/software/libc/manual/html_node/Memory-Allocation-Tunables.html).
 
 ### 4. malloc_trim()
 
