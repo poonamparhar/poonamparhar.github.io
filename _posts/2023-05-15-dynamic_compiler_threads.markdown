@@ -18,7 +18,7 @@ In this post, I will go over how to identify and diagnose this problem. I'll als
 
 ## Monitoring RSS
 
-Let's start by looking at how we can monitor the RSS of a Java process. On Linux systems, we can use tools such as *ps, top, pmap* and */proc/<pid>/smaps* file to monitor RSS. For example, the following script reads the smaps file for a given process id, and prints the RSS every 5 seconds along with the current timestamp to an output file.
+Let's start by looking at how we can monitor the RSS of a Java process. On Linux systems, we can use tools such as *ps, top, pmap* and */proc/\<pid\>/smaps* file to monitor RSS. For example, the following script reads the smaps file for a given process id, and prints the RSS every 5 seconds along with the current timestamp to an output file.
 
 ```
 #!/bin/bash
