@@ -78,7 +78,7 @@ However, this comes with a cost: additional memory usage. Using multiple arenas 
 
 Now, how does this relate to *UseDynamicNumberOfCompilerThreads*? With the *UseDynamicNumberOfCompilerThreads* option enabled, the JVM can create and terminate compiler threads on demand as the comilation requests in the JIT compiler's queue rise and fall. These dynamic compiler threads can cause an application to use a large number of different arenas causing malloc fragmentation and excessive memory retention.
 
-You can read the **per-thread malloc arena** issue described in detail in this bug report: https://sourceware.org/bugzilla/show_bug.cgi?id=11261
+You can read the **per-thread malloc arena** issue described in detail in this [glibc bug report](https://sourceware.org/bugzilla/show_bug.cgi?id=11261).
 
 ## Workarounds and Solutions
 
