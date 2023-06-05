@@ -17,13 +17,13 @@ This diagnostic enhancement adds timestamps to the output of -XX:+TraceCompilerT
 - [JDK-8302264: Improve dynamic compiler threads creation](https://bugs.openjdk.org/browse/JDK-8302264)
 This enhancement request aims to improve how the JIT Compiler creates and terminates dynamic compiler threads so as to reduce their unnecessary creation and termination. This is a work in progress.
 
-- [JDK-8303767: Identify and address the likely causes of glibc allocator fragmentation](https://bugs.openjdk.org/browse/JDK-8303767) The goal of this change request is to determine whether there are any allocation patterns in the JVM that can cause GLIBC memory fragmentation and retention, resulting in an increase in RSS for Java applications. This effort is also in progress.
+- [JDK-8303767: Identify and address the likely causes of glibc allocator fragmentation](https://bugs.openjdk.org/browse/JDK-8303767) The goal of this change request is to determine whether there are any allocation patterns in the JVM that can cause GLIBC memory fragmentation and retention, resulting in an increase in Resident Set Size (RSS) for Java applications. This effort is also in progress.
 
 - [JDK-8301749: Tracking malloc pooled memory size](https://bugs.openjdk.org/browse/JDK-8301749)
 This enhancement added a new *jcmd* diagnostic command **System.native_heap_info** that prints the output of [malloc_info(3)](https://man7.org/linux/man-pages/man3/malloc_info.3.html) function on Linux systems. *malloc_info()* provides detailed information about memory allocation statistics of a program, and can be extremely helpful in understanding if significant amount of memory is being retained and not returned to the OS by the GLIBC's allocator.
 
 - [JDK-8249666: Improve Native Memory Tracking to report the actual RSS usage](https://bugs.openjdk.org/browse/JDK-8249666)
-This request aims to improve the output of [Native Memory Tracking (NMT)](https://docs.oracle.com/en/java/javase/20/vm/native-memory-tracking.html)] tool to include the **Resident Set Size (RSS)** of a Java process along with its *Committed* and *Reserved* sizes. This will help in accounting the actual total number of pages resident in physical memory.
+This request aims to improve the output of [Native Memory Tracking (NMT)](https://docs.oracle.com/en/java/javase/20/vm/native-memory-tracking.html)] tool to include the **RSS** of a Java process along with its *Committed* and *Reserved* sizes. This will help in accounting the actual total number of pages resident in physical memory.
 
 - [JDK-8157023: Integrate NMT with JFR](https://bugs.openjdk.org/browse/JDK-8157023)
 This enhancement added two new JFR events - **NativeMemoryUsage** and **NativeMemoryUsageTotal** that help track the native memory usage of a specific memory type in the JVM and the total native memory usage for the Java process respectively. These events are recorded in a JFR file when the process is started with the JVM option *-XX:NativeMemoryTracking=summary/detail*.
