@@ -17,7 +17,7 @@ In OCI, the JMS service is located under "Observability and Management", as show
 
 The JMS offers two levels of capabilities through **Basic** and **Advanced** features.
 
-**Basic features:** These include Java Runtime discovery and Usage Tracking capabilities. These features are accessible to all Java users.
+**Basic features:** These include Java Runtime discovery and Usage Tracking capabilities. These features are available for free to all Java users, but you might need to pay for storage if your data takes up more space than what is available under the always-free OCI tier.
 
 **Advanced features:** These offer detailed insights not just into the Java Runtimes within your systems, but also into the applications utilizing them, along with tools for effectively managing Java installations. Advanced Features are available only to the licensees of Java SE Subscription products and for those running their workloads on Oracle Cloud Infrastructure.
 
