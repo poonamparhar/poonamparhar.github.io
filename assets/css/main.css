@@ -774,7 +774,7 @@ html {
 
 body {
   font-family: 'Lato', sans-serif;
-  color: #515151;
+  color: #313131;
   background-color: #fbfbfb;
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -885,7 +885,9 @@ table tfoot td {
 
 .wrapper {
   max-width: 1250px;
+  /* max-width: 70%; */
   position: relative;
+  /* margin:0 auto; // center align horizontally */
 }
 
 .post, .article-page {
@@ -930,10 +932,12 @@ table tfoot td {
   top: 0;
   left: 0;
   bottom: 0;
+  /* width: 15%; */
   width: 240px;
   height: 100%;
   padding: 20px 10px;
   background-color: #ffffff;
+  color: #5d5c5c;
 }
 
 .about {
@@ -1211,17 +1215,18 @@ a.newer-posts:hover {
 }
 
 .header-page .page-date {
-  color: #a0a0a0;
+  color: #050202;
   font-weight: 300;
   font-size: 12px;
   text-transform: uppercase;
+
 }
 
 .page-cover-image {
   position: relative;
   padding: 0;
   margin: 0;
-  max-height: 500px;
+  max-height: 220px;
   background-color: #fafafa;
   overflow: hidden;
 }

@@ -1,0 +1,134 @@
+---
+layout: post
+title: "Java Management Service"
+date: 2024-04-23
+description: # Java Management Service
+img:  jms_header.png # size:1912x461
+fig-caption: # Add figcaption (optional)
+tags: [JMS, Java, monitor, manage, OCI]
+---
+
+As a JVM Sustaining Engineer, my focus has always been on discovering ways to make it easier to diagnose and troubleshoot JVM issues, enhancing JVM serviceability, and enabling users gain critical insights into their Java runtime environments. Recently, I have ventured into the world of Oracle Cloud Infrastructure (**OCI**) with an objective of understanding the needs of enterprise Java application deployments, and helping enable ease of maintenance and optimization of Java applications running on OCI instances.
+
+The process of monitoring and managing enterprise-level Java applications is a very challenging and complex task. The complexity often extends to multiple dimensions, including Java version management, performance monitoring, troubleshooting, and ensuring the security of the applications. Fortunately, OCI offers assistance through the Java Management Service (JMS). JMS is a an OCI native service to help manage Java Runtimes and applications running on-premise or on any cloud. This service is specifically designed and poised to alleviate these complexities. This post is about JMS, its capabilities and how it can help manage, monitor and optimize Java applications.
+
+In OCI, the JMS service is located under "Observability and Management", as shown in the following image.
+<p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms1.png"></p>
+
+The JMS offers two levels of capabilities through **Basic** and **Advanced** features.
+
+**Basic features:** These include Java Runtime discovery and Usage Tracking capabilities. These features are accessible to all Java users.
+
+**Advanced features:** These offer detailed insights not just into the Java Runtimes within your systems, but also into the applications utilizing them, along with tools for effectively managing Java installations. Advanced Features are available only to the licensees of Java SE Subscription products and for those running their workloads on Oracle Cloud Infrastructure.
+
+## Key Terms
+Let's go over a few key terms in order to get a grasp on the capabilities of the JMS.
+
+### JMS Plug-in
+
+JMS plug-in is a plugin that gets installed on the hosts that need to be monitored by the Java Management Service. This plug-in allows the service to interact with the hosts and obtain data from them.
+
+JMS plug-ins are provided by the **Oracle Management Agent** and **Oracle Cloud Agent** for OCI Compute Instances. Oracle Cloud Agent is installed to monitor OCI Oracle Linux compute instances that are in the same tenancy and region. Oracle Management Agent needs to be installed to monitor all other hosts.
+
+### Managed Instance
+
+A managed instance is a host where the JMS plug-in is installed. The hosts can be compute instances within OCI, or on-premise desktops or laptops, or instances on any other third-party cloud service.
+
+### Fleet
+
+A fleet is a group of managed instances which are configured to be managed by the Java Management Service. It is the primary collection that we interact with through JMS console.
+
+## Creating a Fleet
+The first step in using the JMS service is to create a fleet. Under **Java Management -> Fleets**, click on **Create fleet**, and you would see a panel similar to shown below.
+
+<p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_create_fleet.png" border="1"></p>
+
+Put in the name of the fleet and its description. Additionally, you can choose and enable some or all of the **Advanced features**, which I will go over in a later section. Please see the complete steps [here](https://docs.oracle.com/en-us/iaas/jms/doc/jms-quick-start-guide.html#GUID-558888D4-E956-4E9D-96F0-2F873B70C4BC) on how to create a fleet in OCI. Once the fleet is created, it can be viewed in the **Fleets** view as shown below.
+
+<p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_fleets.png" border="1"></p>
+
+After creating a fleet, we can add hosts/machines to it that we would like to manage through the JMS console.
+
+## Adding a Managed Instance to a Fleet
+
+In the Fleet details view, click on **Configure managed instances** to add instances/machines to the fleet.
+
+<p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_add_instance.png" border="1"></p>
+
+That will bring up the 'Configure managed instances' panel having download links for the management agent installer and an installation script. Download the agent installer and the installation script for the platform of your compute instance.
+
+<p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_configure_instance.png" border="1"></p>
+
+Copy both to the compute instance and use the installer script to install the JMS plugin.
+
+```
+sudo bash JMS_fleet-poonam_linux.sh --install-mgmt-agent
+```
+
+As the installation progresses, you would see log messages printed on the terminal. The successful installation of the plugin should show messages like the following.
+
+```
+...
+Agent setup completed and the agent is running.
+In the future agent can be started by directly running: sudo systemctl start mgmt_agent
+Please use OCI CLI or OCI Management Agent console to validate the successful activation of your agent.
+
+Please make sure that you delete /tmp/jms-input.rsp or store it in secure location.
+
+===========================================================================================================================================================================================================================================================================================
+Cleanup temporary files (install key, downloaded zip and rpm files) and packages installed by script...
+Please make sure that you delete this script /home/opc/jms/JMS_fleet-poonam_linux.sh or store it in secure location.
+
+===========================================================================================================================================================================================================================================================================================
+Verifying status of JMS installation...
+
+Management Agent installation has been completed with 'Java Usage Tracking service plugin (Service.plugin.jms)'
+        JMS basic features will be enabled on this instance.
+Management Agent installation has been completed with 'Java Management service plugin (Service.plugin.jm)'
+        JMS advanced features can be enabled on this instance.
+Agent was successfully registered using key fleet-poonam (ocid1.xxx.xxx.xxx.xxx).
+Instance has been assigned to JMS fleet fleet-poonam (ocid1.xxx.xxx.xxx.xxx).
+
+A copy of this installation log can be found at /var/log/oracle/JMSInstallScript/JMSInstallScriptLogs-08Apr2024-154245-1071540.log
+
+```
+
+After the successful installation of the agent on the compute instance, it becomes available as a managed instance in the fleet.
+
+<p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_managed_Instances.png" ></p>
+
+## Basic Features
+### Java Runtimes in a Fleet
+As part of Basic features available to all Java users, we can view Java Runtimes installed on managed instances in a fleet.
+
+<p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_java_runtimes.png" ></p>
+
+### Applications running in a Fleet
+The JMS also provides a view showing all the Java applications running on managed instances utilizing the installed Java Runtimes.
+
+<p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_java_applications.png" ></p>
+
+## Advanced Features
+
+[Advanced features](https://docs.oracle.com/en-us/iaas/jms/doc/advanced-features.html) of JMS help in gaining additional insights into Java workloads in the enterprise. Let's take a quick look at some of these features.
+
+### Scan for Java Libraries
+This feature helps detect Java libraries used by your Java applications as wells as applications deployed in Java Servers. It can also report potential vulnerabilities (CVE) associated with 3rd party Java libraries. Please see details [here](https://docs.oracle.com/en-us/iaas/jms/doc/java-libraries-aut.html).
+
+### Scan for Java servers
+With this feature, JMS can detect Java Servers running on managed instances in the fleet. JMS supports Apache Tomcat, JBoss and WebLogic server. Details on how to scan Java Servers are available [here](https://docs.oracle.com/en-us/iaas/jms/doc/java-servers-jut.html).
+
+### Performance Analysis
+We can improve and optimize the performance of Java workloads with the JVM tuning recommendations from the Performance Analysis feature. It analyzes the JFR data collected from applications running on managed instances and recommends optimum values for the JVM options to improve their overall performance. More details [here](https://docs.oracle.com/en-us/iaas/jms/doc/performance-analysis-definition.html).
+
+### Java Migration Analysis
+Using this feature allows developers to assess the feasibility and level of effort needed to transition Java applications to newer JDK versions. It generates a comprehensive report outlining the potential effort and modifications necessary for migrating to various JDK versions. More details [here](https://docs.oracle.com/en-us/iaas/jms/doc/java-migration-analysis.html).
+
+### Crypto Event Analysis
+Crypto Event Analysis can help in keeping Java applications secure by identifying weak cryptographic usages that will stop working with upcoming updates in Oracle JRE and JDK. The analysis provides detailed information on what cryptographic algorithms from the Java Security Libraries are being used, and compares them with the planned changes highlighting applications that might be impacted by the future changes or by certificates that are about to expire. Details [here](https://docs.oracle.com/en-us/iaas/jms/doc/crypto-event-analysis.html).
+
+### Run JDK Flight Recorder
+JDK Flight Recorder collects diagnostic and profiling information from Java applications. This feature allows us to collect the JFR files from Java workloads in the fleet enabling us to analyze JFR information and extract invaluable insights. Learn more about this [feature](https://docs.oracle.com/en-us/iaas/jms/doc/run-jdk-flight-recorder.html).
+
+## Summary
+JMS is an exceptional service for monitoring and managing Java workloads. As I said before, the Basic features are available for free to all Java users. If you haven't used it yet, do give it a try! We would love to hear you feedback and inputs.
