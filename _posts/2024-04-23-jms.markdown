@@ -97,6 +97,7 @@ After the successful installation of the agent on the compute instance, it becom
 
 <p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_managed_Instance.png" ></p>
 
+
 ## Basic Features
 ### Java Runtimes in a Fleet
 As part of Basic features available to all Java users, we can view Java Runtimes installed on managed instances in a fleet.
