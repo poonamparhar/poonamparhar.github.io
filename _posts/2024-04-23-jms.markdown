@@ -43,7 +43,7 @@ The first step in using the JMS service is to create a fleet. Under **Java Manag
 
 <p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_create_fleet.png" border="1"></p>
 
-Put in the name of the fleet and its description. Additionally, you can choose and enable some or all of the **Advanced features**, which I will go over in a later section. Please see the complete steps [here](https://docs.oracle.com/en-us/iaas/jms/doc/jms-quick-start-guide.html#GUID-558888D4-E956-4E9D-96F0-2F873B70C4BC) on how to create a fleet in OCI. Once the fleet is created, it can be viewed in the **Fleets** view as shown below.
+Put in the name of the fleet and its description. Additionally, if you are monitoring OCI instances or are a Java SE Subscriber you can choose and enable some or all of the **Advanced features**, which I will go over in a later section. Please see the complete steps [here](https://docs.oracle.com/en-us/iaas/jms/doc/jms-quick-start-guide.html#GUID-558888D4-E956-4E9D-96F0-2F873B70C4BC) on how to create a fleet in OCI. Once the fleet is created, it can be viewed in the **Fleets** view as shown below.
 
 <p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_fleets.png" border="1"></p>
 
@@ -111,7 +111,7 @@ The JMS also provides a view showing all the Java applications running on manage
 
 ## Advanced Features
 
-[Advanced features](https://docs.oracle.com/en-us/iaas/jms/doc/advanced-features.html) of JMS help in gaining additional insights into Java workloads in the enterprise. Let's take a quick look at some of these features.
+[Advanced features](https://docs.oracle.com/en-us/iaas/jms/doc/advanced-features.html) of JMS, available to OCI users and Java SE Subscribers, help in gaining additional insights into Java workloads in the enterprise. Let's take a quick look at some of these features.
 
 ### Scan for Java Libraries
 This feature helps detect Java libraries used by your Java applications as wells as applications deployed in Java Servers. It can also report potential vulnerabilities (CVE) associated with 3rd party Java libraries. Please see details [here](https://docs.oracle.com/en-us/iaas/jms/doc/java-libraries-aut.html).
