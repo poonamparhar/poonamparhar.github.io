@@ -95,7 +95,7 @@ A copy of this installation log can be found at /var/log/oracle/JMSInstallScript
 
 After the successful installation of the agent on the compute instance, it becomes available as a managed instance in the fleet.
 
-<p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_managed_Instance.png" ></p>
+<p style="text-align:left;"><img style='border:1px solid #000000' src="../assets/img/jms_managed_instance.png"></p>
 
 
 ## Basic Features
